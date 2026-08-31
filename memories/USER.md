@@ -1,0 +1,1 @@
+Gerald's wife is named Jessica. She is involved in trip planning and provisioning for Jolie Rousse.

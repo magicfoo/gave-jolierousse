@@ -1,0 +1,5 @@
+Baja Ha-Ha XXXII (2026): Jolie Rousse is doing the rally. Route: SF→San Diego→Turtle Bay→Bahía Santa María→Cabo San Lucas. Rally dates Nov 2–14. Skipper check-in Nov 1 SD. Leg 1 starts Nov 2 11am off Coronado Roads. Leg 2 starts Nov 7 9am. Leg 3 starts Nov 12 7am. Skill: sailing/baja-haha-forecast has the full forecast procedure and schedule.
+§
+User expects voice messages to render as Telegram voice bubbles (round audio), not as .ogg file attachments. If a voice message is generating as a file instead of a bubble, it's a gateway delivery issue to investigate, not a tool limitation.
+§
+Ha-Ha 2026 crew plan: 4 crew SF→SD: Mayder, Jessica, Jim, Gerald. Jean-Pierre joins in SD for SD→La Paz (5 crew from SD onward). Final destination: Puerto Escondido (near La Paz, Sea of Cortez). Ha-Ha ends in Cabo Nov 14, then continuing ~135nm to La Paz/Puerto Escondido.
