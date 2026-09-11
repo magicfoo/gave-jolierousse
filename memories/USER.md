@@ -1,3 +1,3 @@
 Gerald's wife is named Jessica. She is involved in trip planning and provisioning for Jolie Rousse.
 §
-Gerald (magicg) — owner/skipper of Jolie Rousse. Email: ggainant@gmail.com, Phone: +1 347-425-3466. Wife: Mayder (mgainant69@gmail.com, +1 646-693-0385). Son: Arthur. Crew for Baja Ha-Ha: Jessica Hoover (jessicahoover1989@gmail.com, +1 650-703-7165), Jean-Pierre Carjuzaa (jpcarjuzaa@gmail.com, +1 925-532-2848).
+Gerald (magicg) — owner/skipper of Jolie Rousse. Email: ggainant@gmail.com, Phone: +1 347-425-3466. Wife: Mayder (mgainant69@gmail.com, +1 646-693-0385). Son: Arthur. Crew for Baja Ha-Ha: Jessica Hoover (jessicahoover1989@gmail.com, +1 650-703-7165), Jean-Pierre Carjuzaa (jpcarjuzaa@gmail.com, +1 925-532-2848), Jimmy (Jessica's stepfather) + Jimmy's wife (Jessica's mother).
