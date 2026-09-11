@@ -13,3 +13,5 @@ Gerald prefers voice messages delivered as Telegram voice bubbles (sendVoice), n
 Gerald's family: wife will handle trip food provisioning (needs assistance organizing meals, shopping lists, resupply planning). Son named Arthur. French is spoken in the family — voice messages and documents may need French versions.
 §
 Jolie Rousse is being considered for the Baja Ha-Ha Cruisers Rally (San Diego to Cabo San Lucas, Mexico). Reviewed the official Owner/Skipper and Crew waivers at baja-haha.com. Drafted a vessel-specific crew waiver — no minors, crew 100% responsible for accepting risks. Waiver draft saved at /opt/data/Jolie_Rousse_Crew_Waiver_DRAFT.md.
+§
+Baja Ha-Ha rally participation: Jolie Rousse is preparing for the Baja Ha-Ha rally. Gerald (magicg) is the owner/skipper. Wife and son Arthur are involved. Crew waiver drafted (no minors, 100% crew responsibility). Provisioning assistance requested for wife. Waiver references: baja-haha.com waivers for owner/skipper and crew.
