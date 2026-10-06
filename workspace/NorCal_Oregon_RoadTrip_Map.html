@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NorCal & Oregon Road Trip — 10-Day Loop</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #1a1a2e; color: #e0e0e0; }
+  #map { width: 100%; height: 80vh; border-radius: 12px; margin: 0 auto; box-shadow: 0 4px 20px rgba(0,0,0,0.5); }
+  .header { text-align: center; padding: 20px; background: linear-gradient(135deg, #0f3460, #16213e); border-radius: 12px 12px 0 0; }
+  .header h1 { color: #e94560; font-size: 1.8em; margin-bottom: 6px; }
+  .header p { color: #a0a0b0; font-size: 0.95em; }
+  .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+  .info-panel { background: #16213e; border-radius: 8px; padding: 16px; margin-top: 16px; }
+  .info-panel h2 { color: #e94560; font-size: 1.2em; margin-bottom: 10px; }
+  .info-panel table { width: 100%; border-collapse: collapse; }
+  .info-panel th { text-align: left; color: #8ec5fc; padding: 6px 10px; border-bottom: 1px solid #2a2a4a; font-size: 0.85em; }
+  .info-panel td { padding: 8px 10px; border-bottom: 1px solid #2a2a4a; font-size: 0.9em; }
+  .info-panel td.day { color: #e94560; font-weight: bold; white-space: nowrap; }
+  .info-panel td.drive { color: #8ec5fc; white-space: nowrap; }
+  .legend { display: flex; gap: 20px; justify-content: center; padding: 10px; font-size: 0.85em; }
+  .legend-item { display: flex; align-items: center; gap: 6px; }
+  .legend-dot { width: 12px; height: 12px; border-radius: 50%; }
+  .start-dot { background: #00e676; }
+  .end-dot { background: #ff3d00; }
+  .stop-dot { background: #2196f3; }
+  .route-line { background: #e94560; width: 20px; height: 3px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>🗺️ NorCal & Oregon Road Trip — 10-Day Loop</h1>
+    <p>October 25 – November 4, 2026 · ~1,200 miles · Clayton → Yosemite → Oregon → Coast → SF</p>
+  </div>
+  <div id="map"></div>
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot start-dot"></div> Start/End</div>
+    <div class="legend-item"><div class="legend-dot stop-dot"></div> Overnight Stop</div>
+    <div class="legend-item"><div class="route-line"></div> Driving Route</div>
+  </div>
+  <div class="info-panel">
+    <h2>📅 Itinerary Overview</h2>
+    <table>
+      <tr><th>Day</th><th>Date</th><th>Leg</th><th>Drive</th></tr>
+      <tr><td class="day">1</td><td>Mon Oct 25</td><td>Clayton → Yosemite</td><td class="drive">~190 mi / 4h</td></tr>
+      <tr><td class="day">2</td><td>Tue Oct 26</td><td>Yosemite (full day)</td><td class="drive">—</td></tr>
+      <tr><td class="day">3</td><td>Wed Oct 27</td><td>Yosemite → Lassen Volcanic NP</td><td class="drive">~280 mi / 5.5h</td></tr>
+      <tr><td class="day">4</td><td>Thu Oct 28</td><td>Shasta → Crater Lake, OR</td><td class="drive">~180 mi / 3.5h</td></tr>
+      <tr><td class="day">5</td><td>Fri Oct 29</td><td>Crater Lake → Bandon, OR</td><td class="drive">~230 mi / 4.5h</td></tr>
+      <tr><td class="day">6</td><td>Sat Oct 30</td><td>Oregon Coast exploration</td><td class="drive">—</td></tr>
+      <tr><td class="day">7</td><td>Sun Oct 31</td><td>Oregon → Redwoods, NorCal</td><td class="drive">~230 mi / 5h</td></tr>
+      <tr><td class="day">8</td><td>Mon Nov 1</td><td>Redwoods → Mendocino</td><td class="drive">~140 mi / 3h</td></tr>
+      <tr><td class="day">9</td><td>Tue Nov 2</td><td>Mendocino → Point Reyes → SF</td><td class="drive">~150 mi / 3.5h</td></tr>
+      <tr><td class="day">10</td><td>Wed Nov 3</td><td>SF → Clayton</td><td class="drive">~45 mi / 1h</td></tr>
+    </table>
+  </div>
+</div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+// Waypoint coordinates (approximate)
+const waypoints = [
+  { name: "Clayton, CA", lat: 37.9410, lon: -121.9390, type: "start", day: "Day 1 & 10", desc: "Start/End — East Bay near Mt. Diablo" },
+  { name: "Yosemite Valley", lat: 37.7456, lon: -119.5936, type: "stop", day: "Day 1-2", desc: "El Capitan, Half Dome, Yosemite Falls" },
+  { name: "Lassen Volcanic NP", lat: 40.4900, lon: -121.5000, type: "stop", day: "Day 3", desc: "Bumpass Hell, Sulphur Works, Lake Helen" },
+  { name: "Redding / Shasta Lake", lat: 40.5865, lon: -122.3917, type: "stop", day: "Day 3-4", desc: "Mt. Shasta views, overnight stop" },
+  { name: "Crater Lake, OR", lat: 42.9446, lon: -122.1090, type: "stop", day: "Day 4", desc: "Deepest lake in the US — stunning blue" },
+  { name: "Bandon, OR", lat: 43.1189, lon: -124.4180, type: "stop", day: "Day 5-6", desc: "Bandon Dunes, Coquille River Lighthouse" },
+  { name: "Cape Perpetua, OR", lat: 44.2800, lon: -124.0800, type: "stop", day: "Day 6", desc: "Dramatic basalt cliffs, Thor's Well" },
+  { name: "Crescent City / Redwoods", lat: 41.7550, lon: -124.2020, type: "stop", day: "Day 7", desc: "Jedediah Smith Redwoods, Stout Grove" },
+  { name: "Avenue of the Giants", lat: 40.2900, lon: -123.9000, type: "stop", day: "Day 8", desc: "31-mile scenic old-growth redwoods" },
+  { name: "Mendocino, CA", lat: 39.3076, lon: -123.7995, type: "stop", day: "Day 8-9", desc: "Headlands, Glass Beach, farm-to-table" },
+  { name: "Point Reyes, CA", lat: 38.0420, lon: -122.7980, type: "stop", day: "Day 9", desc: "Lighthouse, elephant seals, Tomales Bay" },
+  { name: "San Francisco, CA", lat: 37.7749, lon: -122.4194, type: "stop", day: "Day 9-10", desc: "Golden Gate, Ferry Building, Fisherman's Wharf" }
+];
+
+// Initialize map
+const map = L.map('map').setView([40.5, -122.5], 5);
+
+// Dark-themed tile layer
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+  attribution: '&copy; OpenStreetMap &copy; CARTO',
+  maxZoom: 18
+}).addTo(map);
+
+// Define colors
+const colors = {
+  start: '#00e676',
+  stop: '#2196f3',
+  end: '#ff3d00'
+};
+
+// Add markers
+waypoints.forEach((wp, i) => {
+  const color = wp.type === 'start' ? colors.start : colors.stop;
+  const icon = L.divIcon({
+    className: 'custom-div-icon',
+    html: `<div style="background:${color};width:14px;height:14px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 8px rgba(0,0,0,0.5);"></div>`,
+    iconSize: [14, 14],
+    iconAnchor: [7, 7]
+  });
+  
+  const marker = L.marker([wp.lat, wp.lon], { icon }).addTo(map);
+  
+  marker.bindPopup(`
+    <div style="font-family:sans-serif;min-width:160px;">
+      <div style="font-weight:bold;color:#e94560;font-size:1em;margin-bottom:4px;">${wp.name}</div>
+      <div style="color:#2196f3;font-size:0.85em;margin-bottom:4px;">${wp.day}</div>
+      <div style="color:#555;font-size:0.8em;">${wp.desc}</div>
+    </div>
+  `);
+});
+
+// Draw route polyline
+const routeCoords = waypoints.map(wp => [wp.lat, wp.lon]);
+const routeLine = L.polyline(routeCoords, {
+  color: '#e94560',
+  weight: 3,
+  opacity: 0.7,
+  dashArray: '10, 8'
+}).addTo(map);
+
+// Fit bounds to show entire route
+map.fitBounds(routeLine.getBounds(), { padding: [40, 40] });
+</script>
+</body>
+</html>
