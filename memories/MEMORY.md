@@ -6,6 +6,6 @@ Ha-Ha 2026 crew plan: CANCELLED — Baja Ha-Ha no longer happening. Crew contact
 §
 Gerald's family: wife Jessica handles trip food provisioning. Son Arthur. French spoken in the family — voice messages and documents may need French versions.
 §
-Jolie Rousse is being considered for the Baja Ha-Ha Cruisers Rally (San Diego to Cabo San Lucas, Mexico). Reviewed the official Owner/Skipper and Crew waivers at baja-haha.com. Drafted a vessel-specific crew waiver — no minors, crew 100% responsible for accepting risks. Waiver draft saved at /opt/data/Jolie_Rousse_Crew_Waiver_DRAFT.md.
+Baja Ha-Ha waiver: no longer needed (trip canceled). A crew waiver draft was previously saved at /opt/data/Jolie_Rousse_Crew_Waiver_DRAFT.md.
 §
-Crew Telegram access: Mayder's messages silently dropped — not in TELEGRAM_ALLOWED_USERS. Gerald wants ALL crew able to reach the bot in the group. Action needed (Gerald's decision): add Mayder, Jim, Jean-Pierre to allowlist + consider telegram.require_mention=false. Pre-departure item for Ha-Ha.
+Crew Telegram access: Mayder's messages silently dropped — not in TELEGRAM_ALLOWED_USERS. May still want to revisit allowlist + telegram.require_mention setting.
