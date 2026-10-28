@@ -11,3 +11,5 @@ Baja Ha-Ha waiver: no longer needed (trip canceled). A crew waiver draft was pre
 Crew Telegram access: Mayder's messages silently dropped — not in TELEGRAM_ALLOWED_USERS. May still want to revisit allowlist + telegram.require_mention setting.
 §
 Mayder (Gerald's wife) handles trip planning and logistics for the family — road trips, hotels, itineraries. She cares about healthy food and initiated meal planning for the NorCal trip.
+§
+Mayder doesn't drink alcohol before 5pm — plan daytime activities around non-drinking activities, save wine/tasting for after 5.
